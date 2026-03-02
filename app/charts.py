@@ -237,7 +237,7 @@ def chart_correlation_coefficient(correlation_coefficient: float):
 
 
 def chart_box_plot(point: float):
-    data = pd.DataFrame({"samples": list(np.linspace(-10, 10, 9)) + [point]})
+    data = pd.DataFrame({"samples": list(np.linspace(-20, 20, 9)) + [point]})
     data["is_dynamic"] = False
     data.loc[data.index[-1], "is_dynamic"] = True
 

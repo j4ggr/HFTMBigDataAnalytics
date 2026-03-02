@@ -2,3 +2,8 @@ streamlit
 daspi
 numpy
 pandas
+scikit-learn
+matplotlib
+altair
+graphviz
+seaborn
