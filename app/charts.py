@@ -8,6 +8,8 @@ import pandas as pd
 from matplotlib import font_manager
 from matplotlib import rcParams
 
+from app.i18n import t
+
 dsp.STR.LANGUAGE = "de"
 
 
@@ -115,14 +117,18 @@ def chart_dice_probability_distribution(n_dices: int, exp_samples: int, kind: st
         ).plot(dsp.Line, on_last_axes=True
         ).stripes(mean=True
         ).label(
-            fig_title="Wahrscheinlichkeitsverteilung der Augensumme von Würfeln",
-            sub_title=f"{n_samples:,} Würfe mit {n_dices} sechsseitigen Würfeln{sub_title_addition}".replace(",", "'"),
+            fig_title=t("Wahrscheinlichkeitsverteilung der Augensumme von Würfeln"),
+            sub_title=t("{n_samples} Würfe mit {n_dices} sechsseitigen Würfeln{sub_title_addition}").format(
+                n_samples=f"{n_samples:,}".replace(",", "'"),
+                n_dices=n_dices,
+                sub_title_addition=t(sub_title_addition),
+            ),
             target_label=(
-                "Anzahl Beobachtungen",
-                "Kumulative Beobachtungen",
-                "Wahrscheinlichkeit",
-                "Kumulative Wahrscheinlichkeit",),
-            feature_label="Augensumme",)
+                t("Anzahl Beobachtungen"),
+                t("Kumulative Beobachtungen"),
+                t("Wahrscheinlichkeit"),
+                t("Kumulative Wahrscheinlichkeit"),),
+            feature_label=t("Augensumme"),)
     return chart.figure
 
 
@@ -257,7 +263,7 @@ def chart_box_plot(point: float):
             hide_axis="feature",
             kw_call={"s": 80},
         ).label(
-            fig_title="Box Plot mit einem dynamischen Punkt",
+            fig_title=t("Box Plot mit einem dynamischen Punkt"),
             target_label="Beispielhafte Daten",))
     
     chart.axes[0].boxplot(data["samples"], vert=False, positions=[0], widths=6)
